@@ -1,0 +1,26 @@
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<math display='block'>
+  <mrow>
+	<mi>&gamma;</mi><mo>=</mo>
+	  <mfrac>
+		<mrow>
+			<mn>1</mn>
+		</mrow>
+		<mrow>
+		<msqrt>
+			<mn>1</mn>
+			<mo>-</mo>
+			<mfrac>
+				<mrow><msup><mi>v</mi><mn>2</mn></msup></mrow>
+				<mrow><msup><mi>c</mi><mn>2</mn></msup></mrow>
+			</mfrac>
+		</msqrt>
+		</mrow>
+	  </mfrac>
+  </mrow>
+</math>
+<math display='block'>
+  <mrow>
+	<mi>&Delta;t'</mi><mo>=</mo><mi>&gamma;&Delta;t</mi>
+  </mrow>
+</math>

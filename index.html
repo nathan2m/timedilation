@@ -1,0 +1,81 @@
+<html>
+
+<head>
+	<title>Dilatação do tempo</title>
+	<link rel="icon" href="img/relogio.png" type="image/x-icon">
+	<meta name="description" content="Aplicação prática da dilatação do tempo prevista na teoria da relatividade">
+	<meta name="keywords" content="dilatação do tempo,teoria da relatividade,relatividade,dilatação,tempo">
+	<meta name="author" content="Nathan Manera Magalhães">
+	<meta name="viewport"
+		content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width, height=device-height">
+	<meta http-equiv="content-language" content="pt-br">
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="javascript/bootstrap.min.js"></script>
+	<script src="https://code.angularjs.org/1.6.6/angular.min.js"></script>
+	<script src="javascript/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="javascript/jquery.min.js"></script>
+	<link rel="stylesheet" href="css/estilo.css">
+	<script src="javascript/index.js"></script>
+</head>
+
+<body ng-app="tempoDilata" ng-controller="TempoCtrl">
+	<div class="row">
+		<div class="col col-lg-12 zero">
+			<div class="col col-lg-6 bg-info">
+				<p>Tempo real de viagem: <img src="img/deltaTlinha.png" style="width:9.5vmin; height:auto"></p>
+				<p><b>{{formatarTempo(getTT(d, v))}}</b></p>
+				<br />
+				<p>Tempo de viagem para o viajante: <img src="img/deltaT.png" style="width:8.5vmin; height:auto"></p>
+				<p><b>{{formatarTempo(getTV(d, v))}}</b></p>
+				<br />
+				<p>Dilatação do tempo: <img src="img/dilatacaoTempo.png" style="width:30vmin; height:auto"></p>
+				<p><b>{{formatarTempo(tempoDilatado(d, v))}}</b></p>
+			</div>
+			<div class="col col-lg-6 zero">
+				<div class="row zero">
+					<div class="col col-lg-12 zero">
+						<div class="col col-lg-6 bg-info metade">
+							<p>Velocidade: <b>{{getVR(false, v) | number:2}}c</b></p>
+							<p><b>{{formatarNumero(v)}} m/s</b></p>
+							<p><b>{{formatarNumero(v * 3.6)}} km/h</b></p>
+							<p><b>{{getVR(true, v)}}%</b> velocidade luz</p>
+						</div>
+						<div class="col col-lg-6 bg-info metade">
+							<p>Distância da viagem:</p>
+							<p><b>{{d}} anos-luz</b></p>
+							<p><b>{{formatarNumero(getD(d) / 1000)}} Km</b></p>
+							<p><b>{{formatarNumero(getUA(d))}} UA</b></p>
+						</div>
+					</div>
+				</div>
+				<div class="row zero">
+					<div class="col col-lg-12 bg-info">
+						<center>Fator de Lorentz: <b>{{getFL(v)}}</b></center>
+						<center><img src="img/fatorLorentz.png" class="img-responsive"
+								style="width:40vmin; height:auto"></center>
+					</div>
+					<div class="col col-lg-12 zero">
+						<div class="col col-lg-6 bg-info metade">
+							<label for="vel">Velocidade (m/s)</label>
+							<input class="form-control" ng-change="zerar()" type="text" ng-model="v" id="vel" />
+							<input class="slider" type="range" name="velocidade" min="0" max="{{c}}" step="1"
+								ng-init="v = 0" ng-model="v" />
+						</div>
+						<div class="col col-lg-6 bg-info metade">
+							<label for="al">Distância (anos-luz)</label>
+							<input class="form-control" ng-change="zerar()" type="text" ng-model="d" id="al" />
+							<input class="slider" type="range" name="distancia" min="0" max="10" step="0.001"
+								ng-init="d = 1" ng-model="d" />
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
