@@ -1,3 +1,50 @@
+const lang = {
+    "pt": {
+        trv: "Tempo real de viagem",
+        tvv: "Tempo de viagem para o viajante",
+        dt: "Dilatação do tempo",
+        v: "Velocidade",
+        vl: "da velocidade da luz",
+        dv: "Distância da viagem",
+        d: "Distância",
+        al: "anos-luz",
+        ua: "UA",
+        fl: "Fator de Lorentz",
+        as: "anos",
+        a: "ano",
+        ms: "meses",
+        m: "mês",
+        ds: "dias",
+        da: "dia",
+        inf: "Infinito",
+        e: "Erro",
+        ind: "Indefinido",
+    },
+    "en": {
+        trv: "Travel's true time elapsed",
+        tvv: "Travel's time elapsed for traveler",
+        dt: "Time dilation",
+        v: "Speed",
+        vl: "of light speed",
+        dv: "Travel distance",
+        d: "Distance",
+        al: "light-years",
+        ua: "AU",
+        fl: "Lorentz factor",
+        as: "years",
+        a: "year",
+        ms: "months",
+        m: "month",
+        ds: "days",
+        da: "day",
+        inf: "Infinite",
+        e: "Error",
+        ind: "Undefined",
+    },
+};
+
+var al = "pt";
+
 const ly = 9460730472580800; // Distância em Metros que a luz leva um ano para percorrer no vácuo
 const c = 299792458;        // Velocidade da luz no vácuo em Metros por Segundo
 const ua = 149597870700;   // Unidade Astronômica em Metros
@@ -21,6 +68,10 @@ app.controller("TempoCtrl", function TempoCtrl($scope) {
     $scope.c = c;
     $scope.ly = ly;
     $scope.ua = ua;
+
+    $scope.setLang = (l) => {$scope.lang = lang[l]; al = l};
+
+    $scope.lang = lang[al];
     // Velocidade do viajante em m/s
     // Distância da viagem em anos-luz
     $scope.zerar = () => {
@@ -36,7 +87,7 @@ app.controller("TempoCtrl", function TempoCtrl($scope) {
     }
     $scope.getFL = (v) => {
         let lz = fatorLorentz(v);
-        return (lz === Infinity ? "Infinito" : lz.toString().includes('NaN') ? 'Erro' : lz.toFixed(16));
+        return (lz === Infinity ? lang[al].inf : lz.toString().includes('NaN') ? lang[al].e : lz.toFixed(16));
     }
     $scope.getD = (d) => {
         return (d * ly);
@@ -61,14 +112,14 @@ app.controller("TempoCtrl", function TempoCtrl($scope) {
         minutos = fn(minutos);
         segundos = fn(segundos);
         milesimos = milesimos < 10 ? "00" + milesimos : milesimos < 100 ? "0" + milesimos : milesimos;
-        let texto = anos + " ano" + (anos != 1 ? "s " : " ") +
-            meses + " " + (meses !== 1 ? "meses " : "mês ") +
-            dias + " dia" + (dias !== 1 ? "s " : " ") +
+        let texto = anos + " " + (anos !== "01 " ? lang[al].as : lang[al].a) + " " +
+            meses + " " + (meses !== "01" ? lang[al].ms : lang[al].m) + " " +
+            dias + " " + (dias !== "01" ? lang[al].ds : lang[al].da) + " " +
             horas + " h " +
             minutos + " min " +
             segundos + " s " +
             milesimos;
-        return texto.includes("NaN") ? "Indefinido" : texto;
+        return texto.includes("NaN") ? lang[al].ind : texto;
     }
     //--------------------
     $scope.getTT = (d, v) => {
