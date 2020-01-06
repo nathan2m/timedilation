@@ -25,34 +25,53 @@
 <body ng-app="tempoDilata" ng-controller="TempoCtrl">
 	<div class="row">
 		<div class="col col-lg-12 zero">
-			<div class="col col-lg-6 bg-info">
-				<p>{{lang.trv}}: <img src="img/deltaTlinha.png" style="width:9.5vmin; height:auto"></p>
-				<p><b>{{formatarTempo(getTT(d, v))}}</b></p>
-				<br />
-				<p>{{lang.tvv}}: <img src="img/deltaT.png" style="width:8.5vmin; height:auto"></p>
-				<p><b>{{formatarTempo(getTV(d, v))}}</b></p>
-				<br />
-				<p>{{lang.dt}}: <img src="img/dilatacaoTempo.png" style="width:30vmin; height:auto"></p>
-				<p><b>{{formatarTempo(tempoDilatado(d, v))}}</b></p>
-				<br />
-				<button type="button" ng-click="setLang('pt')">Português</button>
-				<button type="button" ng-click="setLang('en')">English</button>
-			</div>
 			<div class="col col-lg-6 zero">
+				<div class="row zero">
+					<div class="col col-lg-12 bg-info">
+						<center>
+							<button class="btn btn-default" type="button" ng-click="setLang('pt')">Português</button>
+							<button class="btn btn-default" type="button" ng-click="setLang('en')">English</button>
+						</center>
+					</div>
+				</div>
 				<div class="row zero">
 					<div class="col col-lg-12 zero">
 						<div class="col col-lg-6 bg-info metade">
+							<label for="vel">{{lang.v}} (m/s)</label>
+							<input class="form-control" ng-change="zerar()" type="text" ng-model="v" id="vel" />
+							<input class="slider" type="range" name="velocidade" min="0" max="{{c}}" step="1"
+								ng-init="v = 0" ng-model="v" />
+							<br />
 							<p>{{lang.v}}: <b>{{getVR(false, v) | number:2}}c</b></p>
 							<p><b>{{formatarNumero(v)}} m/s</b></p>
 							<p><b>{{formatarNumero(v * 3.6)}} km/h</b></p>
 							<p><b>{{getVR(true, v)}}%</b> {{lang.vl}}</p>
 						</div>
 						<div class="col col-lg-6 bg-info metade">
+							<label for="al">{{lang.d}} ({{lang.al}})</label>
+							<input class="form-control" ng-change="zerar()" type="text" ng-model="d" id="al" />
+							<input class="slider" type="range" name="distancia" min="0" max="10" step="0.001"
+								ng-init="d = 1" ng-model="d" />
+							<br />
 							<p>{{lang.dv}}:</p>
 							<p><b>{{d}} {{lang.al}}</b></p>
-							<p><b>{{formatarNumero(getD(d) / 1000)}} Km</b></p>
+							<p><b>{{formatarNumero(getD(d) / 1000)}} km</b></p>
 							<p><b>{{formatarNumero(getUA(d))}} {{lang.ua}}</b></p>
 						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col col-lg-6 zero">
+				<div class="row zero">
+					<div class="col col-lg-12 bg-info">
+						<p>{{lang.trv}}: <img src="img/deltaTlinha.png" style="width:9.5vmin; height:auto"></p>
+						<p><b>{{formatarTempo(getTT(d, v))}}</b></p>
+						<br />
+						<p>{{lang.tvv}}: <img src="img/deltaT.png" style="width:8.5vmin; height:auto"></p>
+						<p><b>{{formatarTempo(getTV(d, v))}}</b></p>
+						<br />
+						<p>{{lang.dt}}: <img src="img/dilatacaoTempo.png" style="width:30vmin; height:auto"></p>
+						<p><b>{{formatarTempo(tempoDilatado(d, v))}}</b></p>
 					</div>
 				</div>
 				<div class="row zero">
@@ -60,20 +79,6 @@
 						<center>{{lang.fl}}: <b>{{getFL(v)}}</b></center>
 						<center><img src="img/fatorLorentz.png" class="img-responsive"
 								style="width:40vmin; height:auto"></center>
-					</div>
-					<div class="col col-lg-12 zero">
-						<div class="col col-lg-6 bg-info metade">
-							<label for="vel">{{lang.v}} (m/s)</label>
-							<input class="form-control" ng-change="zerar()" type="text" ng-model="v" id="vel" />
-							<input class="slider" type="range" name="velocidade" min="0" max="{{c}}" step="1"
-								ng-init="v = 0" ng-model="v" />
-						</div>
-						<div class="col col-lg-6 bg-info metade">
-							<label for="al">{{lang.d}} ({{lang.al}})</label>
-							<input class="form-control" ng-change="zerar()" type="text" ng-model="d" id="al" />
-							<input class="slider" type="range" name="distancia" min="0" max="10" step="0.001"
-								ng-init="d = 1" ng-model="d" />
-						</div>
 					</div>
 				</div>
 			</div>

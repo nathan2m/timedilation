@@ -69,7 +69,7 @@ app.controller("TempoCtrl", function TempoCtrl($scope) {
     $scope.ly = ly;
     $scope.ua = ua;
 
-    $scope.setLang = (l) => {$scope.lang = lang[l]; al = l};
+    $scope.setLang = (l) => { $scope.lang = lang[l]; al = l };
 
     $scope.lang = lang[al];
     // Velocidade do viajante em m/s
@@ -89,12 +89,10 @@ app.controller("TempoCtrl", function TempoCtrl($scope) {
         let lz = fatorLorentz(v);
         return (lz === Infinity ? lang[al].inf : lz.toString().includes('NaN') ? lang[al].e : lz.toFixed(16));
     }
-    $scope.getD = (d) => {
-        return (d * ly);
-    }
-    $scope.getUA = (d) => {
-        return ((d * ly) / ua) < 0 ? parseInt(0) : parseInt((d * ly) / ua);
-    }
+    $scope.getD = (d) => (d * ly);
+
+    $scope.getUA = (d) => ((d * ly) / ua) < 0 ? parseInt(0) : parseInt((d * ly) / ua);
+
     //--------------------
     $scope.formatarTempo = (t) => {
         //let s = t;
@@ -112,25 +110,23 @@ app.controller("TempoCtrl", function TempoCtrl($scope) {
         minutos = fn(minutos);
         segundos = fn(segundos);
         milesimos = milesimos < 10 ? "00" + milesimos : milesimos < 100 ? "0" + milesimos : milesimos;
-        let texto = anos + " " + (anos !== "01 " ? lang[al].as : lang[al].a) + " " +
-            meses + " " + (meses !== "01" ? lang[al].ms : lang[al].m) + " " +
-            dias + " " + (dias !== "01" ? lang[al].ds : lang[al].da) + " " +
-            horas + " h " +
+        let texto = "";
+        if (parseInt(anos) > 0) texto += anos + " " + (anos !== "01 " ? lang[al].as : lang[al].a) + " ";
+        if (parseInt(meses) > 0) texto += meses + " " + (meses !== "01" ? lang[al].ms : lang[al].m) + " ";
+        if (parseInt(dias) > 0) texto += dias + " " + (dias !== "01" ? lang[al].ds : lang[al].da) + " ";
+        texto += (texto !== "" ? " | " : "") + horas + " h " +
             minutos + " min " +
             segundos + " s " +
             milesimos;
         return texto.includes("NaN") ? lang[al].ind : texto;
     }
     //--------------------
-    $scope.getTT = (d, v) => {
-        return (tempoViagemSegundos(d, v));
-    }
-    $scope.getTV = (d, v) => {
-        return (tempoViagemSegundos(d, v) / fatorLorentz(v));
-    }
-    $scope.tempoDilatado = (d, v) => {
-        return ($scope.getTT(d, v) - $scope.getTV(d, v));
-    }
+    $scope.getTT = (d, v) => tempoViagemSegundos(d, v);
+
+    $scope.getTV = (d, v) => tempoViagemSegundos(d, v) / fatorLorentz(v);
+
+    $scope.tempoDilatado = (d, v) => $scope.getTT(d, v) - $scope.getTV(d, v);
+
     $scope.formatarNumero = (numero) => {
         numero = parseInt(numero);
         let str = numero.toString();
