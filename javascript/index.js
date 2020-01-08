@@ -41,6 +41,27 @@ const lang = {
         e: "Error",
         ind: "Undefined",
     },
+    "fr": {
+        trv: "Temps réel du voyage",
+        tvv: "Temps du voyage pour le voyageur",
+        dt: "Dilatation du temps",
+        v: "Vitesse",
+        vl: "de la vitesse de la lumière",
+        dv: "Distance du voyage",
+        d: "Distance",
+        al: "années-lumière",
+        ua: "UA",
+        fl: "Facteur de Lorentz",
+        as: "ans",
+        a: "an",
+        ms: "mois",
+        m: "mois",
+        ds: "jours",
+        da: "jour",
+        inf: "Infini",
+        e: "Erreur",
+        ind: "Indéfini",
+    },
 };
 
 var al = "pt";
@@ -59,9 +80,9 @@ var tempoViagemSegundos = (d, v) => {
     return (tv === Infinity ? 0 : tv.toString().includes('NaN') ? 0 : tv);
 }
 
-var fatorLorentz = (v) => (1 / Math.pow((1 - Math.pow(v / c, 2)), 1 / 2)); //Fator de Lorentz
+var fatorLorentz = v => (1 / Math.pow((1 - Math.pow(v / c, 2)), 1 / 2)); //Fator de Lorentz
 
-var fn = (n) => n < 10 ? "0" + n : n;
+var fn = n => n < 10 ? "0" + n : n;
 
 var app = angular.module("tempoDilata", []);
 app.controller("TempoCtrl", function TempoCtrl($scope) {
@@ -69,7 +90,7 @@ app.controller("TempoCtrl", function TempoCtrl($scope) {
     $scope.ly = ly;
     $scope.ua = ua;
 
-    $scope.setLang = (l) => { $scope.lang = lang[l]; al = l };
+    $scope.setLang = l => { $scope.lang = lang[l]; al = l };
 
     $scope.lang = lang[al];
     // Velocidade do viajante em m/s
@@ -85,16 +106,16 @@ app.controller("TempoCtrl", function TempoCtrl($scope) {
         let r = (v / c) < 0.00000001 ? 0 : (v / c) * 100;
         return b ? parseInt(r * 100) / 100 : parseInt(r) / 100;
     }
-    $scope.getFL = (v) => {
+    $scope.getFL = v => {
         let lz = fatorLorentz(v);
         return (lz === Infinity ? lang[al].inf : lz.toString().includes('NaN') ? lang[al].e : lz.toFixed(16));
     }
-    $scope.getD = (d) => (d * ly);
+    $scope.getD = d => (d * ly);
 
-    $scope.getUA = (d) => ((d * ly) / ua) < 0 ? parseInt(0) : parseInt((d * ly) / ua);
+    $scope.getUA = d => ((d * ly) / ua) < 0 ? parseInt(0) : parseInt((d * ly) / ua);
 
     //--------------------
-    $scope.formatarTempo = (t) => {
+    $scope.formatarTempo = t => {
         //let s = t;
         let anos = (t / segAno) < 1 ? 0 : parseInt(t / segAno); t = t - (anos * segAno);
         let meses = (t / segMes) < 1 ? 0 : parseInt(t / segMes); t = t - (meses * segMes);
@@ -127,7 +148,7 @@ app.controller("TempoCtrl", function TempoCtrl($scope) {
 
     $scope.tempoDilatado = (d, v) => $scope.getTT(d, v) - $scope.getTV(d, v);
 
-    $scope.formatarNumero = (numero) => {
+    $scope.formatarNumero = numero => {
         numero = parseInt(numero);
         let str = numero.toString();
         let res = str.substring(0, ((str.length % 3) % 3));

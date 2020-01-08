@@ -3,7 +3,7 @@
 <head>
 	<title>Dilatação do tempo</title>
 	<link rel="icon" href="img/relogio.png" type="image/x-icon">
-	<meta name="description" content="Aplicação prática da dilatação do tempo prevista na teoria da relatividade">
+	<meta name="description" content="Aplicação prática da Dilatação do Tempo prevista na Teoria da Relatividade de Einstein">
 	<meta name="keywords" content="dilatação do tempo,teoria da relatividade,relatividade,dilatação,tempo">
 	<meta name="author" content="Nathan Manera Magalhães">
 	<meta name="viewport"
@@ -31,6 +31,7 @@
 						<center>
 							<button class="btn btn-default" type="button" ng-click="setLang('pt')">Português</button>
 							<button class="btn btn-default" type="button" ng-click="setLang('en')">English</button>
+							<button class="btn btn-default" type="button" ng-click="setLang('fr')">Français</button>
 						</center>
 					</div>
 				</div>
@@ -50,7 +51,7 @@
 						<div class="col col-lg-6 bg-info metade">
 							<label for="al">{{lang.d}} ({{lang.al}})</label>
 							<input class="form-control" ng-change="zerar()" type="text" ng-model="d" id="al" />
-							<input class="slider" type="range" name="distancia" min="0" max="10" step="0.001"
+							<input class="slider" type="range" name="distancia" min="0" max="10" step="0.01"
 								ng-init="d = 1" ng-model="d" />
 							<br />
 							<p>{{lang.dv}}:</p>
