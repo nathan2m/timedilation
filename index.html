@@ -1,7 +1,7 @@
-<html>
+<html ng-app="tempoDilata" ng-controller="TempoCtrl">
 
 <head>
-	<title>Dilatação do tempo</title>
+	<title>{{lang.dt}}</title>
 	<link rel="icon" href="img/relogio.png" type="image/x-icon">
 	<meta name="description" content="Aplicação prática da Dilatação do Tempo prevista na Teoria da Relatividade de Einstein">
 	<meta name="keywords" content="dilatação do tempo,teoria da relatividade,relatividade,dilatação,tempo">
@@ -22,7 +22,7 @@
 	<script src="javascript/index.js"></script>
 </head>
 
-<body ng-app="tempoDilata" ng-controller="TempoCtrl">
+<body>
 	<div class="row">
 		<div class="col col-lg-12 zero">
 			<div class="col col-lg-6 zero">
@@ -57,7 +57,7 @@
 							<p>{{lang.dv}}:</p>
 							<p><b>{{d}} {{lang.al}}</b></p>
 							<p><b>{{formatarNumero(getD(d) / 1000)}} km</b></p>
-							<p><b>{{formatarNumero(getUA(d))}} {{lang.ua}}</b></p>
+							<p><b>{{formatarNumero(getUA(d))}} <span title="{{lang.UA}}">{{lang.ua}}<span></b></p>
 						</div>
 					</div>
 				</div>

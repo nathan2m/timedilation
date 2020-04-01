@@ -9,6 +9,7 @@ const lang = {
         d: "Distância",
         al: "anos-luz",
         ua: "UA",
+        UA: "Unidade Astronômica",
         fl: "Fator de Lorentz",
         as: "anos",
         a: "ano",
@@ -30,6 +31,7 @@ const lang = {
         d: "Distance",
         al: "light-years",
         ua: "AU",
+        UA: "Astronomical Unit",
         fl: "Lorentz factor",
         as: "years",
         a: "year",
@@ -51,6 +53,7 @@ const lang = {
         d: "Distance",
         al: "années-lumière",
         ua: "UA",
+        UA: "Unité Astronomique",
         fl: "Facteur de Lorentz",
         as: "ans",
         a: "an",
@@ -64,7 +67,7 @@ const lang = {
     },
 };
 
-var al = "pt";
+let al = "pt";
 
 const ly = 9460730472580800; // Distância em Metros que a luz leva um ano para percorrer no vácuo
 const c = 299792458;        // Velocidade da luz no vácuo em Metros por Segundo
@@ -75,14 +78,14 @@ const segDia = 86400;     // 24 horas
 const segMes = 2629800;   // 30 dias 10 horas e 30 minutos
 const segAno = 31557600;  // 365 dias e 6 horas
 
-var tempoViagemSegundos = (d, v) => {
+const tempoViagemSegundos = (d, v) => {
     let tv = ((d * ly) / v);
     return (tv === Infinity ? 0 : tv.toString().includes('NaN') ? 0 : tv);
 }
 
-var fatorLorentz = v => (1 / Math.pow((1 - Math.pow(v / c, 2)), 1 / 2)); //Fator de Lorentz
+const fatorLorentz = v => (1 / Math.pow((1 - Math.pow(v / c, 2)), 1 / 2)); //Fator de Lorentz
 
-var fn = n => n < 10 ? "0" + n : n;
+const fn = n => n < 10 ? "0" + n : n;
 
 var app = angular.module("tempoDilata", []);
 app.controller("TempoCtrl", function TempoCtrl($scope) {
