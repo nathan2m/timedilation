@@ -1,3 +1,5 @@
+const ID = id => document.getElementById(id);
+
 const lang = {
     "pt": {
         trv: "Tempo real de viagem",
@@ -93,7 +95,7 @@ app.controller("TempoCtrl", function TempoCtrl($scope) {
     $scope.ly = ly;
     $scope.ua = ua;
 
-    $scope.setLang = l => { $scope.lang = lang[l]; al = l };
+    $scope.setLang = l => { $scope.lang = lang[l]; al = l; ID("titleHead").innerHTML = $scope.lang.dt; };
 
     $scope.lang = lang[al];
     // Velocidade do viajante em m/s
